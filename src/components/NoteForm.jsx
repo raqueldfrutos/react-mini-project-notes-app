@@ -28,7 +28,7 @@ const NoteForm = ({ notes, setNotes }) => {
     //Validation
     if (!formData.title || !formData.description) return; // return nothing = not submitting
 
-    //Create note object with new note submitted + adding id (not recomended using date in prod)
+    //Create note object with new note submitted + adding id for the unique value (not recomended using date in prod)
     const newNote = { id: Date.now(), ...formData };
 
     // Add new note to Global state along with the rest that were already there
@@ -41,8 +41,6 @@ const NoteForm = ({ notes, setNotes }) => {
       prioriry: "Medium",
       description: "",
     });
-
-    console.log("Form Submitted", formData);
   };
 
   return (
