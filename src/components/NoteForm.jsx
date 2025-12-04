@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const NoteForm = () => {
+const NoteForm = ({ notes, setNotes }) => {
   // const [title, setTitle] = useState("");
   // const [priority, setPriority] = useState("Medium");
   // const [category, setCategory] = useState("Work");
@@ -24,6 +24,24 @@ const NoteForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //Validation
+    if (!formData.title || !formData.description) return; // return nothing = not submitting
+
+    //Create note object with new note submitted + adding id (not recomended using date in prod)
+    const newNote = { id: Date.now(), ...formData };
+
+    // Add new note to Global state along with the rest that were already there
+    setNotes([newNote, ...notes]);
+
+    //Reset form data
+    setFormData({
+      title: "",
+      category: "Work",
+      prioriry: "Medium",
+      description: "",
+    });
+
     console.log("Form Submitted", formData);
   };
 
